@@ -61,9 +61,9 @@ function* fetchData(action) {
     const data3 = yield cps(getRandomUserCPS, { gender: 'female' })
     // console.log('⭐️ : data', data);
     // console.log('⭐️ : data3', data3);
-    // yield put({ type: 'FETCH_SUCCEEDED', data })
+    yield put({ type: 'FETCH_SUCCEEDED', data })
   } catch (error) {
-    // yield put({ type: 'FETCH_FAILED', error })
+    yield put({ type: 'FETCH_FAILED', error })
   }
 
 }
