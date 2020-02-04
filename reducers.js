@@ -1,11 +1,34 @@
-export default function counter(state = 0, action) {
+const defaultState = {
+  count: 0,
+  showText: ''
+}
+export default function counter(state = defaultState, action) {
   switch (action.type) {
     case 'INCREMENT':
-      return state + 1
+      return {
+        ...state,
+        count: state.count + 1
+      }
     case 'INCREMENT_IF_ODD':
-      return (state % 2 !== 0) ? state + 1 : state
+      return {
+        ...state,
+        count: (state.count % 2 !== 0) ? state.count + 1 : state.count
+      }
     case 'DECREMENT':
-      return state - 1
+      return {
+        ...state,
+        count: state.count - 1
+      }
+    case 'FETCH_SUCCEEDED':
+      return {
+        ...state,
+        showText: JSON.stringify(action.data)
+      }
+    case 'FETCH_FAILED':
+      return {
+        ...state,
+        showText: JSON.stringify(action.error)
+      }
     default:
       return state
   }
