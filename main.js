@@ -24,6 +24,9 @@ function render() {
       onIncrement={() => action('INCREMENT')}
       onDecrement={() => action('DECREMENT')}
       onIncrementAsync={() => action('INCREMENT_ASYNC')}
+      testFork={() => action('DO_FORK')}
+      testLoopErr={() => action('START_BACKGROUND_TASK')}
+      testLoopErrCancel={() => action('CANCEL_TASK')}
       getRandomUser = {() => action('FETCH_REQUESTED')} />,
     document.getElementById('root')
   )

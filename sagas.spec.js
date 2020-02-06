@@ -2,7 +2,8 @@ import test from 'tape'
 import {
   incrementAsync,
   fetchData,
-  getRandomUser
+  getRandomUser,
+  getRandomUserCPS
 } from './saga'
 import { delay } from 'redux-saga'
 import { put, takeEvery, all, call, cps } from 'redux-saga/effects'
@@ -84,10 +85,19 @@ test('incrementAsync Saga test', (assert) => {
 
   assert.deepEqual(
     ftd.next().value,
-    cps(getRandomUser, defaultParams.default.fetchData),
-    'fetchData error'
+    cps(getRandomUserCPS, defaultParams.default.fetchData),
+    'cps fetchData error'
   )
-  ftd.next()
+
+  // 建立一個假的錯誤
+  const error = 'error test'
+  assert.deepEqual(
+    ftd.throw(error).value,
+    put({ type: 'FETCH_FAILED', error }),
+    'fetData error'
+  )
+
+  // ftd.next()
 
   assert.end()
 })

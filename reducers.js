@@ -29,6 +29,12 @@ export default function counter(state = defaultState, action) {
         ...state,
         showText: JSON.stringify(action.error)
       }
+    case 'STOP_FORK':
+      return {
+        ...state,
+        showText: JSON.stringify(action.error)
+      }
+
     default:
       return state
   }
